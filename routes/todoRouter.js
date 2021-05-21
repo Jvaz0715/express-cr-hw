@@ -48,8 +48,28 @@ router.get("/get-todo-by-id/:id", (req, res) => {
 
 // 10e. Make a GET "/get-todos-by-done" route that takes in a params that is either true or false. If the params is false, respond with a newDoneArray that has done === false. If the params is true, respond with a newDoneArray that done === true.
 
+router.get("/get-todos-by-done/:status", (req, res) => {
+    let status = req.params.status;
 
+    let completeTodos = [];
+    let incompleteTodos = [];
 
+    todos.forEach( (todo) => {
+        if (todo.done === "true"){
+            completeTodos.push(todo);
+        } else {
+            incompleteTodos.push(todo);
+        }
+    });
+    
+    if(status === "true") {
+        res.json({completedtasks: completeTodos})
+    } else if(status === "false") {
+        res.json({ incompleteTasks: incompleteTodos });
+    } else {
+        res.json({ message: "Please check for true or false only" });
+    };
+});
 
 // 10f. Make a POST "/create-new-todo" route that POSTs a new todo (don't forget the id) with a done that is always false (don't need to pass in done since its always false) and responds with the whole todos array.
 
