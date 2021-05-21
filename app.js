@@ -21,6 +21,10 @@ app.use("/", indexRouter);
 app.use("/api/todo", todoRouter);
 
 // to start server, create listen event
-app.listen(3000, function() {
-    console.log(`Server is running on PORT: ${3000}`);
-});
+// app.listen(3000, function() {
+//     console.log(`Server is running on PORT: ${3000}`);
+// });
+
+// 11. Add modules.export = app to the bottom of the app.js file and comment out the app.listen ***
+
+module.exports = app;
