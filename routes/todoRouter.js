@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const uuidv4 = require("uuid").v4;
 
 // declare the array variable
 
@@ -73,7 +74,29 @@ router.get("/get-todos-by-done/:status", (req, res) => {
 
 // 10f. Make a POST "/create-new-todo" route that POSTs a new todo (don't forget the id) with a done that is always false (don't need to pass in done since its always false) and responds with the whole todos array.
 
+router.post("/create-new-todo", (req, res) => {
+    let newTodo = {
+        id: uuidv4(),
+        todo: req.body.todo,
+    };
 
+    //account that to do doesn't already exist
+    let alreadyTodo;
+
+    todos.forEach((todo) => {
+        if (todo.todo === newTodo.todo) {
+            alreadyTodo = true;
+        };
+    });
+
+    //if it exists message client, if not add to todos array then return
+    if(alreadyTodo) {
+        res.json({ message: "That to do already exists" });
+    } else {
+        todos.push(newTodo);
+        res.json({ todos });
+    };
+})
 
 
 
