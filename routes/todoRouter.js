@@ -81,16 +81,16 @@ router.post("/create-new-todo", (req, res) => {
     };
 
     //account that to do doesn't already exist
-    let alreadyTodo;
+    let done = false;
 
     todos.forEach((todo) => {
         if (todo.todo === newTodo.todo) {
-            alreadyTodo = true;
+            done = true;
         };
     });
 
     //if it exists message client, if not add to todos array then return
-    if(alreadyTodo) {
+    if(done) {
         res.json({ message: "That to do already exists" });
     } else {
         todos.push(newTodo);
