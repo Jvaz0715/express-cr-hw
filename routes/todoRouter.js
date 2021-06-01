@@ -64,7 +64,7 @@ router.get("/get-todos-by-done/:status", (req, res) => {
     });
     
     if(status === "true") {
-        res.json({completedtasks: completeTodos})
+        res.json({completedtasks: completeTodos })
     } else if(status === "false") {
         res.json({ incompleteTasks: incompleteTodos });
     } else {
@@ -78,6 +78,7 @@ router.post("/create-new-todo", (req, res) => {
     let newTodo = {
         id: uuidv4(),
         todo: req.body.todo,
+        done: false,
     };
 
     //account that to do doesn't already exist
